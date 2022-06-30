@@ -88,6 +88,8 @@ const SideBar: React.FC = () => {
     return classnames(styles.menuItem, { [styles.active]: isActive, [styles.activeChild]: isChild && isActive });
   };
 
+  const navLinkClassName = ({ isActive }: { isActive: boolean }) => menuItemStyle(isActive);
+
   return (
     <Bar>
       <div>
@@ -100,7 +102,7 @@ const SideBar: React.FC = () => {
         <Menu>
           {workspace.displaySetupWizard ? (
             <li>
-              <NavLink className={({ isActive }) => menuItemStyle(isActive)} to={RoutePaths.Onboarding}>
+              <NavLink className={navLinkClassName} to={RoutePaths.Onboarding}>
                 <OnboardingIcon />
                 <Text>
                   <FormattedMessage id="sidebar.onboarding" />
@@ -109,7 +111,7 @@ const SideBar: React.FC = () => {
             </li>
           ) : null}
           <li>
-            <NavLink className={({ isActive }) => menuItemStyle(isActive)} to={RoutePaths.Connections}>
+            <NavLink className={navLinkClassName} to={RoutePaths.Connections}>
               <ConnectionsIcon />
               <Text>
                 <FormattedMessage id="sidebar.connections" />
@@ -117,7 +119,7 @@ const SideBar: React.FC = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink className={({ isActive }) => menuItemStyle(isActive)} to={RoutePaths.Source}>
+            <NavLink className={navLinkClassName} to={RoutePaths.Source}>
               <SourceIcon />
               <Text>
                 <FormattedMessage id="sidebar.sources" />
@@ -125,7 +127,7 @@ const SideBar: React.FC = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink className={({ isActive }) => menuItemStyle(isActive)} to={RoutePaths.Destination}>
+            <NavLink className={navLinkClassName} to={RoutePaths.Destination}>
               <DestinationIcon />
               <Text>
                 <FormattedMessage id="sidebar.destinations" />
@@ -136,7 +138,7 @@ const SideBar: React.FC = () => {
       </div>
       <Menu>
         <li>
-          <NavLink className={({ isActive }) => menuItemStyle(isActive)} to={CloudRoutes.Credits}>
+          <NavLink className={navLinkClassName} to={CloudRoutes.Credits}>
             <CreditsIcon icon={faStar} />
             <Text>
               <FormattedNumber value={cloudWorkspace.remainingCredits} />
@@ -183,7 +185,7 @@ const SideBar: React.FC = () => {
           </SidebarPopout>
         </li>
         <li>
-          <NavLink className={({ isActive }) => menuItemStyle(isActive)} to={RoutePaths.Settings}>
+          <NavLink className={navLinkClassName} to={RoutePaths.Settings}>
             <WithFeature featureId={FeatureItem.AllowUpdateConnectors}>
               <React.Suspense fallback={null}>
                 <NotificationIndicator />
